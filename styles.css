@@ -21,6 +21,7 @@
 }
 
 *{ box-sizing:border-box; }
+
 body{
   margin:0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
@@ -38,32 +39,36 @@ body{
   justify-content:space-between;
   padding:10px 18px;
 }
-.topbar .left, .topbar .right{ display:flex; gap:10px; align-items:center; }
+.topbar .left,
+.topbar .right{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
 
 .pill{
   display:inline-flex;
   align-items:center;
-  gap:8px;
   padding:8px 14px;
   border-radius:999px;
   border:2px solid rgba(255,255,255,.65);
   background: rgba(0,0,0,.18);
   font-weight:800;
-  user-select:none;
   cursor:pointer;
-  color:#fff;
 }
-.pill.ghost{ opacity:.75; cursor:default; }
+.pill.ghost{
+  opacity:.6;
+  cursor:default;
+}
 
 /* ================= LAYOUT ================= */
 .layout{
-  max-width: 1500px;
-  margin: 0 auto;
-  padding: 8px 18px 18px;
+  max-width:1500px;
+  margin:0 auto;
+  padding:8px 18px 18px;
   display:grid;
-  grid-template-columns: 360px 1fr 360px;
+  grid-template-columns:360px 1fr 360px;
   gap:22px;
-  align-items:start;
 }
 
 .side{
@@ -72,47 +77,28 @@ body{
   gap:18px;
 }
 
-/* ================= TEAM PANELS ================= */
+/* ================= PANELS ================= */
 .teamPanel{
-  border-radius: 22px;
+  border-radius:22px;
   border:2px solid rgba(255,255,255,.18);
   box-shadow: var(--panelShadow);
   overflow:hidden;
-  min-height: 158px;
 }
 .teamPanel .head{
   padding:14px 18px 10px;
   font-weight:900;
   letter-spacing:.8px;
-  text-transform:uppercase;
-  opacity:.9;
   text-align:center;
-  font-size:14px;
 }
 .teamPanel .content{
-  padding: 8px 18px 18px;
+  padding:14px;
   display:flex;
-  align-items:center;
   justify-content:center;
 }
 .teamPanel .content.col{
   flex-direction:column;
   gap:10px;
 }
-
-.joinBtn{
-  width: 90%;
-  height: 42px;
-  border:0;
-  cursor:pointer;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--join1), var(--join2));
-  color:#0b2b12;
-  font-weight: 1000;
-  letter-spacing:.8px;
-  box-shadow: 0 6px 0 rgba(0,0,0,.22), 0 10px 18px rgba(0,0,0,.18);
-}
-.joinBtn.wm{ width:auto; padding:0 16px; }
 
 .bluePanel{
   background: linear-gradient(180deg, var(--bluePanel1), var(--bluePanel2));
@@ -121,35 +107,62 @@ body{
   background: linear-gradient(180deg, var(--redPanel1), var(--redPanel2));
 }
 
-/* ================= SCORE ================= */
+/* ================= BUTTONS ================= */
+.joinBtn{
+  width:90%;
+  height:42px;
+  border:0;
+  cursor:pointer;
+  border-radius:999px;
+  background: linear-gradient(180deg, var(--join1), var(--join2));
+  color:#0b2b12;
+  font-weight:900;
+}
+.joinBtn.wm{
+  width:auto;
+  padding:0 18px;
+}
+
+.btnSmall{
+  height:38px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.18);
+  background: rgba(0,0,0,.22);
+  color:#fff;
+  cursor:pointer;
+  font-weight:800;
+  padding:0 14px;
+}
+.btnSmall:disabled{
+  opacity:.4;
+  cursor:not-allowed;
+}
+
+/* ================= SCORES ================= */
 .scoreRow{
   display:flex;
   align-items:center;
   justify-content:space-between;
   gap:14px;
-  padding: 0 6px;
+  padding:0 6px;
 }
 .scoreNum{
-  font-size: 64px;
-  font-weight: 1000;
-  text-shadow: 0 4px 0 rgba(0,0,0,.25);
-  line-height: 1;
+  font-size:64px;
+  font-weight:1000;
 }
-.scoreNum.blue{ color: #4db7ff; }
-.scoreNum.red{ color: #ff6b5a; }
+.scoreNum.blue{ color:#4db7ff; }
+.scoreNum.red{ color:#ff6b5a; }
 
 .miniCard{
-  width: 160px;
-  min-height: 74px;
-  border-radius: 10px;
+  width:160px;
+  min-height:74px;
+  border-radius:10px;
   background: rgba(0,0,0,.25);
   border:1px solid rgba(255,255,255,.18);
-  box-shadow: 0 10px 20px rgba(0,0,0,.25);
   display:flex;
   align-items:center;
   justify-content:center;
   font-size:12px;
-  color:rgba(255,255,255,.90);
   text-align:center;
   padding:10px;
   white-space:pre-line;
@@ -157,308 +170,197 @@ body{
 
 /* ================= CENTER ================= */
 .center{
-  border-radius: 22px;
-  background: linear-gradient(180deg, rgba(0,0,0,.10), rgba(0,0,0,.12));
-  padding: 6px 10px 14px;
+  position:relative;
+  border-radius:22px;
+  background: rgba(0,0,0,.12);
+  padding:6px 10px 14px;
 }
 .title{
   text-align:center;
-  font-size: 30px;
-  font-weight: 1000;
-  letter-spacing: 1.2px;
-  text-transform: uppercase;
-  margin: 10px 0 10px;
-  text-shadow: 0 3px 0 rgba(0,0,0,.25);
+  font-size:30px;
+  font-weight:1000;
+  margin:10px 0;
 }
+
 .roleLine{
   display:flex;
   justify-content:center;
   gap:10px;
   flex-wrap:wrap;
-  margin-bottom: 10px;
+  margin-bottom:10px;
 }
 .rolePill{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
   padding:6px 12px;
   border-radius:999px;
   border:1px solid rgba(255,255,255,.22);
   background: rgba(0,0,0,.18);
   font-weight:800;
   font-size:12px;
-  color: rgba(255,255,255,.92);
 }
 
 /* ================= BOARD ================= */
 .board{
   display:grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 14px;
-  margin: 0 auto;
-  max-width: 740px;
+  grid-template-columns:repeat(5,1fr);
+  gap:14px;
+  margin:0 auto;
+  max-width:740px;
 }
 
 .card{
-  height: 82px;
-  border-radius: 10px;
+  height:82px;
+  border-radius:10px;
   background: linear-gradient(180deg, var(--cardBeige1), var(--cardBeige2));
-  border: 2px solid rgba(0,0,0,.24);
-  box-shadow: 0 7px 0 rgba(0,0,0,.25), 0 16px 22px rgba(0,0,0,.16);
-  position: relative;
+  border:2px solid rgba(0,0,0,.24);
   cursor:pointer;
-  user-select:none;
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:10px;
-  text-align:center;
-  font-weight: 1000;
-  letter-spacing: .6px;
-  text-transform: uppercase;
+  font-weight:900;
+  text-transform:uppercase;
   color:#fff;
 }
-.card::after{
-  content:"";
-  position:absolute;
-  left:10px; right:10px;
-  bottom:10px;
-  height: 28px;
-  border-radius: 6px;
-  background: rgba(0,0,0,.34);
-  pointer-events:none;
-}
-.card .w{
-  position: relative;
-  z-index:2;
-  padding:4px 10px;
-  border-radius: 6px;
+
+.card.revealed.red{ background:#ff5f4e; }
+.card.revealed.blue{ background:#21b5ef; }
+.card.revealed.assassin{ background:#444; }
+.card.revealed.blank{
+  background:#fff;
+  color:#111;
 }
 
-/* revealed colors */
-.card.revealed.red{ background: linear-gradient(180deg, #ff5f4e, #e13a2d); }
-.card.revealed.blue{ background: linear-gradient(180deg, #21b5ef, #058ec7); }
-.card.revealed.neutral{ background: linear-gradient(180deg, var(--cardBeige1), var(--cardBeige2)); }
-.card.revealed.assassin{ background: linear-gradient(180deg, #595959, #2d2d2d); }
+/* Spymaster vision */
+.spymaster-view .card:not(.revealed).red{ background:#ff5f4e; }
+.spymaster-view .card:not(.revealed).blue{ background:#21b5ef; }
+.spymaster-view .card:not(.revealed).assassin{ background:#444; }
 
-/* SPYMASTER view: show colors even if not revealed */
-.spymaster-view .card:not(.revealed).red{ background: linear-gradient(180deg, #ff5f4e, #e13a2d); }
-.spymaster-view .card:not(.revealed).blue{ background: linear-gradient(180deg, #21b5ef, #058ec7); }
-.spymaster-view .card:not(.revealed).neutral{ background: linear-gradient(180deg, var(--cardBeige1), var(--cardBeige2)); }
-.spymaster-view .card:not(.revealed).assassin{ background: linear-gradient(180deg, #595959, #2d2d2d); }
-
-/* ================= CLUE CONTROLS ================= */
-.clueBox{
+/* ================= CLUE ================= */
+.clueDock{
   margin-top:10px;
   display:flex;
+  flex-direction:column;
+  align-items:center;
   gap:8px;
-  flex-wrap:wrap;
-  justify-content:center;
-}
-.clueBox input{
-  width: 120px;
-  height: 38px;
-  border-radius: 10px;
-  border:1px solid rgba(255,255,255,.18);
-  background: rgba(0,0,0,.22);
-  color:#fff;
-  padding: 0 10px;
-  outline:none;
-}
-.clueBox input[type="number"]{ width: 80px; }
-.clueBox button{
-  height: 38px;
-  border-radius: 10px;
-  border:1px solid rgba(255,255,255,.18);
-  background: rgba(0,0,0,.22);
-  color:#fff;
-  padding: 0 12px;
-  cursor:pointer;
-  font-weight:900;
 }
 
-.clueLine{
-  text-align:center;
-  font-weight: 900;
-  margin-top: 4px;
-  letter-spacing:.6px;
-  color: rgba(255,255,255,.92);
-}
-
-.btnRow{
-  display:flex;
-  gap:10px;
-  justify-content:center;
-  margin-top:6px;
-}
-.btnRow.tight{ margin-top:8px; }
-.btnRow button{
-  height: 38px;
-  border-radius: 10px;
-  border:1px solid rgba(255,255,255,.18);
-  background: rgba(0,0,0,.22);
-  color:#fff;
-  padding: 0 12px;
-  cursor:pointer;
-  font-weight:900;
-}
-.btnRow button:disabled{ opacity:.45; cursor:not-allowed; }
-
-.hint{
-  font-size:12px;
-  color: var(--muted);
-  text-align:center;
-  margin-top:4px;
-  line-height:1.35;
-}
-
-/* ================= ONLINE BOX ================= */
-.onlineBox{
-  margin-top:10px;
-  border-top:1px solid rgba(255,255,255,.15);
-  padding-top:10px;
-  text-align:center;
-  color: rgba(255,255,255,.9);
-}
-.boxTitle{ font-weight:900; letter-spacing:.5px; margin-bottom:8px; }
-.onlineBox input{
-  width: 88%;
-  margin-top:8px;
-  height:38px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.18);
-  background: rgba(0,0,0,.22);
-  color:#fff;
-  padding:0 10px;
-  outline:none;
-}
-.small{
-  font-size:12px;
-  color: var(--muted);
-  margin-top:6px;
-  line-height:1.35;
-}
-
-.tabs{
-  display:flex;
-  gap:8px;
-  justify-content:center;
-  margin-bottom:8px;
-}
-.tab{
-  height:32px;
+.clueBadge{
+  padding:8px 14px;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,.22);
-  background: rgba(0,0,0,.16);
-  color:#fff;
-  cursor:pointer;
+  background: rgba(0,0,0,.25);
   font-weight:900;
-  padding: 0 14px;
-}
-.tab.active{
-  background: rgba(255,255,255,.14);
 }
 
-.hide{ display:none !important; }
+.clueOverlay{
+  position:absolute;
+  inset:0;
+  background: rgba(0,0,0,.6);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10;
+}
+.clueOverlayInner{
+  padding:20px 26px;
+  border-radius:18px;
+  background: rgba(0,0,0,.8);
+  text-align:center;
+}
+.clueOverlayText{
+  font-size:42px;
+  font-weight:1000;
+}
 
-/* ================= WORDMASTER ================= */
+/* ================= WORD MASTER ================= */
 .wordmasterPanel{
-  max-width: 740px;
-  margin: 16px auto 0;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,.18);
+  max-width:740px;
+  margin:16px auto 0;
+  border-radius:18px;
   background: rgba(0,0,0,.14);
-  padding: 12px;
+  padding:12px;
 }
-.wmTitle{ font-weight:1000; letter-spacing:.8px; text-align:center; }
-.wmSub{ font-size:12px; color:var(--muted); text-align:center; margin-top:4px; }
+
 .wmJoinRow{
   display:flex;
   gap:10px;
   justify-content:center;
   margin-top:10px;
-  flex-wrap:wrap;
 }
-.btnSmall{
-  height:42px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,.18);
-  background: rgba(0,0,0,.22);
-  color:#fff;
-  cursor:pointer;
-  font-weight:1000;
-  padding: 0 14px;
-}
-.wordmasterPanel textarea{
-  width:100%;
-  min-height: 110px;
-  margin-top:10px;
-  resize:vertical;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,.18);
-  background: rgba(0,0,0,.22);
-  color:#fff;
-  padding:10px;
-  outline:none;
-}
-.pickGrid{
-  margin-top:10px;
-  display:grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap:8px;
-  max-height: 220px;
-  overflow:auto;
-  padding-right:6px;
-}
-.pickItem{
+
+/* ================= PROFILE & MENU MODALS ================= */
+.modal{
+  position:fixed;
+  inset:0;
+  background: rgba(0,0,0,.65);
+  backdrop-filter: blur(6px);
   display:flex;
   align-items:center;
-  gap:8px;
-  padding:8px 10px;
-  border-radius:10px;
-  border:1px solid rgba(255,255,255,.10);
-  background: rgba(255,255,255,.06);
-}
-.pickItem input{ transform: scale(1.1); }
-
-/* ================= CLUE BIG OVERLAY (ready) ================= */
-/* Tu l'utiliseras dans app.js quand tu feras l'animation du clue */
-.clueOverlay{
-  position: fixed;
-  inset: 0;
-  display:none;
-  align-items:center;
   justify-content:center;
-  z-index: 9999;
-  background: rgba(0,0,0,.35);
-  backdrop-filter: blur(2px);
+  z-index:99999;
 }
-.clueOverlay.show{ display:flex; }
+.modalCard{
+  width:420px;
+  max-width:90%;
+  background: rgba(20,20,20,.95);
+  border-radius:18px;
+  padding:20px;
+}
 
-.clueOverlay .box{
-  padding: 18px 26px;
-  border-radius: 18px;
-  background: rgba(0,0,0,.70);
-  border: 1px solid rgba(255,255,255,.25);
-  box-shadow: 0 18px 50px rgba(0,0,0,.55);
+.modalTitle{
+  font-size:24px;
+  font-weight:900;
   text-align:center;
-  transform: scale(1.02);
 }
-.clueOverlay .big{
-  font-size: 40px;
-  font-weight: 1000;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  text-shadow: 0 8px 25px rgba(0,0,0,.6);
+.modalSub{
+  font-size:14px;
+  opacity:.8;
+  text-align:center;
+  margin-bottom:12px;
 }
-.clueOverlay .sub{
-  margin-top:8px;
-  font-size: 14px;
-  color: rgba(255,255,255,.78);
+
+.avatarGrid{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:10px;
+  margin-bottom:12px;
 }
+.avatarBtn{
+  font-size:26px;
+  padding:10px;
+  border-radius:12px;
+  background: rgba(255,255,255,.08);
+  cursor:pointer;
+  border:2px solid transparent;
+}
+.avatarBtn.selected{
+  border-color:#2bd34d;
+  background: rgba(43,211,77,.25);
+}
+
+.input{
+  width:100%;
+  height:42px;
+  border-radius:10px;
+  border:1px solid rgba(255,255,255,.2);
+  background: rgba(0,0,0,.4);
+  color:#fff;
+  padding:0 12px;
+  font-weight:800;
+}
+
+.btnPrimary{
+  width:100%;
+  height:44px;
+  border-radius:999px;
+  border:0;
+  background: linear-gradient(180deg, var(--join1), var(--join2));
+  color:#0b2b12;
+  font-weight:900;
+  cursor:pointer;
+}
+
+.hide{ display:none !important; }
 
 /* ================= RESPONSIVE ================= */
-@media (max-width: 1200px){
-  .layout{ grid-template-columns: 1fr; }
-  .board{ max-width: 900px; }
+@media (max-width:1200px){
+  .layout{ grid-template-columns:1fr; }
 }
