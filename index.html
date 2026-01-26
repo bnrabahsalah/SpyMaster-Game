@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Codenames — Clone (3 fichiers)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="left">
+      <button class="pill" id="btnAdmin" title="Change l'équipe qui commence (admin simple)">Admin</button>
+      <button class="pill" id="btnResetConn" title="Reset connexion">↻</button>
+    </div>
+    <div class="right">
+      <span class="pill ghost">Rules</span>
+      <span class="pill ghost">Settings</span>
+    </div>
+  </div>
+
+  <div class="layout">
+
+    <!-- GAUCHE = BLUE TEAM -->
+    <aside class="side">
+      <div class="teamPanel bluePanel">
+        <div class="head">BLUE — OPERATIVES</div>
+        <div class="content">
+          <button class="joinBtn" id="joinBlueOps">JOIN TEAM</button>
+        </div>
+      </div>
+
+      <div class="scoreRow">
+        <div class="scoreNum blue" id="blueCount">8</div>
+        <div class="miniCard" id="bluePlayers">No players</div>
+      </div>
+
+      <div class="teamPanel bluePanel">
+        <div class="head">BLUE — SPYMASTERS</div>
+        <div class="content col">
+          <button class="joinBtn" id="joinBlueSpy">JOIN TEAM</button>
+
+          <div class="clueBox">
+            <input id="clueWord" type="text" placeholder="CLUE" />
+            <input id="clueNum" type="number" min="0" max="9" value="2" />
+            <button id="btnSetClue">SET</button>
+          </div>
+          <div class="clueLine" id="clueDisplay">CLUE: —</div>
+
+          <div class="btnRow">
+            <button id="btnEndTurn">END TURN</button>
+            <button id="btnNewGame">NEW GAME</button>
+          </div>
+          <div class="hint" id="turnHint">—</div>
+        </div>
+      </div>
+
+      <div class="onlineBox">
+        <div class="boxTitle">ONLINE</div>
+
+        <div class="tabs">
+          <button class="tab active" id="tabLocal">Local</button>
+          <button class="tab" id="tabWs">WebSocket</button>
+        </div>
+
+        <div id="localBox">
+          <input id="roomCode" placeholder="room code (ex: ABCD)" />
+          <div class="btnRow tight">
+            <button id="btnConnectLocal">CONNECT</button>
+            <button id="btnDisconnect">DISCONNECT</button>
+          </div>
+          <div class="small">
+            Local = plusieurs onglets sur le même PC (BroadcastChannel).
+          </div>
+        </div>
+
+        <div id="wsBox" class="hide">
+          <input id="wsUrl" placeholder="ws://IP:8080 (ex: ws://localhost:8080)" />
+          <input id="wsRoom" placeholder="room code (ex: ABCD)" />
+          <div class="btnRow tight">
+            <button id="btnConnectWs">CONNECT</button>
+            <button id="btnDisconnect2">DISCONNECT</button>
+          </div>
+          <div class="small">
+            WebSocket = vrais amis sur d’autres PC (besoin d’un serveur).
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CENTRE -->
+    <section class="center" id="center">
+      <div class="title" id="titleText">RED TEAM NEEDS A SPYMASTER</div>
+
+      <div class="roleLine">
+        <span class="rolePill" id="meRole">You: Spectator</span>
+        <span class="rolePill" id="connStatus">Offline</span>
+        <span class="rolePill" id="hostStatus">—</span>
+      </div>
+
+      <div class="board" id="board"></div>
+
+      <div class="hint" style="margin-top:14px;">
+        Operatives (équipe active) : cliquez pour révéler. Spymaster : voit toutes les couleurs.
+      </div>
+
+      <!-- WORD MASTER -->
+      <div class="wordmasterPanel" id="wordmasterPanel">
+        <div class="wmTitle">WORD MASTER</div>
+        <div class="wmSub">Le 5ᵉ joueur choisit les 25 mots. Les couleurs sont tirées automatiquement.</div>
+
+        <div class="wmJoinRow">
+          <button class="joinBtn wm" id="joinWordMaster">JOIN AS WORD MASTER</button>
+          <button class="btnSmall" id="btnOpenWords">WORDS</button>
+        </div>
+
+        <div class="wmBox hide" id="wmBox">
+          <textarea id="wmWords" placeholder="Colle une liste de mots (1 par ligne ou virgules)"></textarea>
+          <div class="btnRow">
+            <button class="btnSmall" id="btnPick25">PICK 25 RANDOM</button>
+            <button class="btnSmall" id="btnUseSelected">USE SELECTED 25</button>
+          </div>
+          <div class="small" id="wmInfo">0 mots détectés</div>
+          <div class="pickGrid" id="pickGrid"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DROITE = RED TEAM -->
+    <aside class="side">
+      <div class="teamPanel redPanel">
+        <div class="head">RED — OPERATIVES</div>
+        <div class="content">
+          <button class="joinBtn" id="joinRedOps">JOIN TEAM</button>
+        </div>
+      </div>
+
+      <div class="scoreRow">
+        <div class="miniCard" id="redPlayers">No players</div>
+        <div class="scoreNum red" id="redCount">9</div>
+      </div>
+
+      <div class="teamPanel redPanel">
+        <div class="head">RED — SPYMASTERS</div>
+        <div class="content">
+          <button class="joinBtn" id="joinRedSpy">JOIN TEAM</button>
+        </div>
+      </div>
+
+      <div class="logPanel">
+        <div class="head">GAME LOG <span class="caret">˄</span></div>
+        <div class="logBody" id="log"></div>
+      </div>
+    </aside>
+
+  </div>
+
+  <script src="app.JS"></script>
+</body>
+</html>
