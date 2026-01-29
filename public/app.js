@@ -28,6 +28,7 @@
     center: $("center"),
     board: $("board"),
     titleText: $("titleText"),
+    gameLog: $("gameLog"),
 
     meRole: $("meRole"),
     connStatus: $("connStatus"),
@@ -689,6 +690,20 @@
     }
     return lines.length ? lines.join("\n") : "No players";
   }
+  function renderGameLog(){
+  if(!el.gameLog) return;
+
+  const rows = Object.entries(state.players).map(([id, p]) => {
+    const av = p.avatar || "🙂";
+    const name = p.name || "Player";
+    const team = p.team ? p.team.toUpperCase() : "—";
+    const role = p.role ? p.role.toUpperCase() : "SPECTATOR";
+    const meTag = (id === state.me.id) ? " (YOU)" : "";
+    return `• ${av} ${name}${meTag} — ${team} / ${role}`;
+  });
+
+  el.gameLog.textContent = rows.length ? rows.join("\n") : "No players connected.";
+}
 
   function isRoleTaken(role){
     return Object.values(state.players).some(p => p.role === role);
@@ -880,7 +895,7 @@
     renderClueBadge();
     renderBoard();
     renderPickGrid();
-
+    renderGameLog();
     const token = state.game._clueFlashToken || null;
     if(token && token !== lastClueFlashToken){
       lastClueFlashToken = token;
